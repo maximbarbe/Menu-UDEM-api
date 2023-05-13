@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Accueil{% endblock %}
+{% block body %}
+    <div id="app">{% raw %}{{ message }}{% endraw %}</div>
+{% endblock %}
+
+{% block vue %}
+<script>
+    const { createApp } = Vue;
+
+    createApp({
+        data() {
+            return {
+                message: '<p>Hello World</p>'
+            }
+        }
+    }).mount('#app')
+</script>
+{% endblock %}
