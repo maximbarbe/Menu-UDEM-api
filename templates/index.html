@@ -1,8 +1,29 @@
 {% extends "base.html" %}
 
 {% block title %}Accueil{% endblock %}
+{% block extra_links %}
+<link href="{{url_for('static', path='styles/index.css')}}" rel="stylesheet"/>
+{% endblock %}
 {% block body %}
-    
+<div class="flex--container">
+    <div class="left">
+        <div class="left--contenu">
+            <h1>Bienvenue à l'UDEM café.</h1>
+            <p>Cet API va vous permettre de faciliter la recherche de cafés et produits, ainsi que la prise de commandes.</p>
+            <div class="btn--container">
+                <a href="/login">
+                    <button class="login--button">Login</button>
+                </a>
+                <a href="/register">
+                    <button class="register--button">Register</button>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    <div class="right">
+    </div>
+</div>
 {% endblock %}
 
 {% block vue %}

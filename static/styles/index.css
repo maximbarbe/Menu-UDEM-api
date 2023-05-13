@@ -1,0 +1,36 @@
+
+
+
+.flex--container {
+    display:flex;
+    flex-direction: row;
+    height: 91vh;
+
+}
+div {
+    border: solid red 2px;
+}
+.left, .right{
+    width: 50%;
+    height: 100%;
+}
+
+.right {
+    background-image: url('../images/udem-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.left--contenu {
+    color: #0057ac;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.btn--container {
+    display: flex;
+    flex-direction: row;
+}
