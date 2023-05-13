@@ -18,16 +18,36 @@ c = connection.cursor()
 
 # FOREIGN KEY(COMMANDE_ID) REFERENCES COMMANDE(ID)  
 
-item = """
-        CREATE TABLE item
-        (ID             INTEGER           PRIMARY KEY,
+
+# Création d'un item dans la base de données.
+# item = """
+#         CREATE TABLE item
+#         (ID             INTEGER           PRIMARY KEY,
+#         NAME            TEXT              NOT NULL,
+#         PRIX            FLOAT             NOT NULL,
+#         DISPONIBLE      BOOL              NOT NULL,
+#         LOCATIONS       TEXT              NOT NULL
+           
         
         
-        
-        
-        )
-"""
+#         )
+# """
+
+# Création d'une commande dans la base de données.
+# commande = """
+#         CREATE table commande
+#         (ID             INTEGER             PRIMARY KEY,
+#         USER_ID         INTEGER,
+#         TOTAL           FLOAT               NOT NULL,
+#         ITEMS           TEXT                NOT NULL,
+#         DATE            TEXT                NOT NULL,
+#         FOREIGN KEY(USER_ID) REFERENCES users(ID),
+#         FOREIGN KEY(ITEMS) REFERENCES item(ID)
+#         )
 
 
-c.execute(user_creation)
+
+# """
+
+c.execute(commande)
 connection.commit()
