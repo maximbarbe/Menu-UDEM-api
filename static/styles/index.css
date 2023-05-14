@@ -7,23 +7,12 @@
     height: 91vh;
 
 }
-div {
-    border: solid red 2px;
-}
+
 .left, .right{
     width: 50%;
     height: 100%;
     transition: all 3s ease-in-out;
 }
-
-/* .left:hover {
-    width: 75%;
-    
-}
-.right:hover {
-    width: 75%;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.75);
-} */
 
 .right {
     background-image: url('../images/udem-image.jpg');
@@ -68,4 +57,15 @@ button {
 }
 button:hover {
     background-color:#0057ac;
+}
+.login--a, .register--a {
+    border-color: none !important;
+    --bs-btn-padding-x: none !important;
+    --bs-btn-padding-y: none !important;
+    --bs-btn-border-width: none !important;
+}
+
+.index--intro {
+    font-weight: 700;
+    font-size: 2vw;
 }
