@@ -13,7 +13,17 @@ div {
 .left, .right{
     width: 50%;
     height: 100%;
+    transition: all 3s ease-in-out;
 }
+
+/* .left:hover {
+    width: 75%;
+    
+}
+.right:hover {
+    width: 75%;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.75);
+} */
 
 .right {
     background-image: url('../images/udem-image.jpg');

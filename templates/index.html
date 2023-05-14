@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body %}
 <div class="flex--container">
-    <div class="left">
+    <div class="left" onmouseover="changeLeftDivWidth()" onmouseleave="resetLeftDivWidth()">
         <div class="left--contenu">
             <h1>Bienvenue à l'UDEM café.</h1>
             <p>Cet API va vous permettre de faciliter la recherche de cafés et produits, ainsi que la prise de commandes.</p>
@@ -21,13 +21,14 @@
             </div>
         </div>
     </div>
-    <div class="right">
+    <div class="right" onmouseover="changeRightDivWidth()" onmouseleave="resetRightDivWidth()">
     </div>
 </div>
 {% endblock %}
 
 {% block vue %}
 <script>
+
     const { createApp } = Vue;
 
 </script>
