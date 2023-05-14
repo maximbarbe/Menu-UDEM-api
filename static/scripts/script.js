@@ -30,6 +30,11 @@ const changeRightDivWidth = () => {
 }
 
 const resetRightDivWidth = () => {
+    for (let i = 0; i<buttons.length; i++) {
+        buttons[i].classList.remove("btn");
+        buttons[i].classList.remove("disabled");
+        buttons[i].style.color = "white";
+    }
     leftDiv.style.boxShadow = "none";
     rightDiv.style.width = "50%";
 }
