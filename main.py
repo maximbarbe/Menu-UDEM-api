@@ -1,6 +1,6 @@
 import re
 import werkzeug.security
-from fastapi import FastAPI, Request, Depends
+from fastapi import FastAPI, Request, Depends, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -20,8 +20,13 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Setup le manager pour le login de utilisateurs
 load_dotenv()
-manager = LoginManager(os.environ.get('key'), '/login')
+manager = LoginManager(os.environ.get('key'), '/login', use_cookie=True)
+manager.cookie_name="udem_cookie"
 
+
+@manager.user_loader
+def load_user():
+    pass
 
 ########################################################################################################
 ################################## DATABASE ###########################################################
@@ -47,8 +52,12 @@ def get_login_page():
 
 @app.get("/register", response_class=HTMLResponse)
 def get_register_page(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
+    return templates.TemplateResponse("register.html", {"request": request, "form": None})
 
+@app.post("/register", response_class=HTMLResponse)
+def post_register_page(request: Request):
+    print(request.form.password)
+    pass
 
 @app.post("/login")
 def login(user_data: OAuth2PasswordRequestForm = Depends()):
