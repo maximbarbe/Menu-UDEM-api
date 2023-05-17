@@ -71,6 +71,8 @@ async def post_register_page(request: Request, form_data: RegisterForm = Depends
     if res.fetchall() != []:
         return templates.TemplateResponse("register.html", {"request": request, 'errors': 'Email déjà existant, veuillez réessayer.', 'form_data': form_data})
     else:
+        if len(form_data.username) < 6:
+            return templates.TemplateResponse("register.html", {"request": request, 'errors': "Nom d'utilisateur trop court. Il devrait contenir au moins 6 caractères.", 'form_data': form_data})
         if form_data.password != form_data.confirmed_password:
             return templates.TemplateResponse('register.html', {"request": request, 'errors': 'Les mots de passes ne correspondent pas.', 'form_data': form_data})
         if not check_password_validity(form_data.password):
