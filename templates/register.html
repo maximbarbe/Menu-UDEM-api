@@ -5,6 +5,7 @@
     {% else %}
         <h1>{{errors}}</h1>
     {% endif %}
+    {% if not form_data %}
     <form method="post" action="/register">
         <input type="text" placeholder="Username" name="username"/>
         <input type="email" placeholder="Email" name="email"/>
@@ -12,4 +13,13 @@
         <input type="password" placeholder="Confirm password" name="confirmed_password"/>
         <input type="submit" value="Register"/>
     </form>
+    {% else %}
+    <form method="post" action="/register">
+        <input type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
+        <input type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
+        <input type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
+        <input type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
+        <input type="submit" value="Register"/>
+    </form>
+    {% endif %}
 {% endblock %}

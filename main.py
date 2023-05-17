@@ -69,12 +69,12 @@ async def post_register_page(request: Request, form_data: RegisterForm = Depends
     query="SELECT * FROM users WHERE EMAIL = ?"
     res = db_cursor.execute(query, (form_data.email.lower(),))
     if res.fetchall() != []:
-        return templates.TemplateResponse("register.html", {"request": request, 'errors': 'Email déjà existant, veuillez réessayer.'})
+        return templates.TemplateResponse("register.html", {"request": request, 'errors': 'Email déjà existant, veuillez réessayer.', 'form_data': form_data})
     else:
         if form_data.password != form_data.confirmed_password:
-            return templates.TemplateResponse('register.html', {"request": request, 'errors': 'Les mots de passes ne correspondent pas.'})
+            return templates.TemplateResponse('register.html', {"request": request, 'errors': 'Les mots de passes ne correspondent pas.', 'form_data': form_data})
         if not check_password_validity(form_data.password):
-            return templates.TemplateResponse('register.html', {"request": request, 'errors': 'Le mot de passe doit contenir au moins 8 caractères dont au moins 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial.'})
+            return templates.TemplateResponse('register.html', {"request": request, 'errors': 'Le mot de passe doit contenir au moins 8 caractères dont au moins 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial.', 'form_data': form_data})
         query="INSERT INTO users VALUES(?, ?, ?, ?, 'MEMBER')"
         pw = generate_password_hash(password=form_data.password, method="pbkdf2:sha256", salt_length=8)
         db_cursor.execute(query, (None, form_data.username, form_data.email.lower(), pw,))
