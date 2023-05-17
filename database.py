@@ -6,7 +6,7 @@ connection = sqlite3.connect("data.db")
 c = connection.cursor()
 user_creation = """
         CREATE TABLE users
-        (ID         INTEGER         PRIMARY KEY,
+        (ID         INTEGER         PRIMARY KEY     AUTOINCREMENT,
         USERNAME    CHAR(20)        NOT NULL,
         EMAIL       CHAR(100)       NOT NULL,
         PASSWORD    CHAR(20)        NOT NULL,
@@ -15,13 +15,13 @@ user_creation = """
 
 """
 
-SELECT_USER = """
-    SELECT * FROM users WHERE EMAIL = 'TEST@GMAIL.COM'
-"""
+# SELECT_USER = """
+#     SELECT * FROM users WHERE EMAIL = 'TEST@GMAIL.COM'
+# """
 
-res = c.execute(SELECT_USER)
-print(res.fetchall())
-# FOREIGN KEY(COMMANDE_ID) REFERENCES COMMANDE(ID)  
+c.execute(user_creation)
+connection.commit()
+
 
 
 # Création d'un item dans la base de données.

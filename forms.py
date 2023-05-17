@@ -9,3 +9,9 @@ class RegisterForm:
     email: str = Form(...)
     password: str = Form(...)
     confirmed_password: str = Form(...)
+    
+    
+@dataclass    
+class LoginForm:
+    email: str = Form(...)
+    password: str = Form(...)
