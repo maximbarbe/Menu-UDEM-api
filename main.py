@@ -1,7 +1,7 @@
 import re
 import werkzeug.security
 from fastapi import FastAPI, Request, Depends, Form
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordRequestFormStrict
@@ -9,8 +9,12 @@ from fastapi_login import LoginManager
 from dotenv import load_dotenv
 import os
 import sqlite3
+from forms import RegisterForm
 
 ##################################### FASTAPI SETUP ##################################################
+
+user = None
+
 # Create the app
 app = FastAPI()
 
@@ -31,11 +35,14 @@ def load_user():
 ########################################################################################################
 ################################## DATABASE ###########################################################
 
-connection = sqlite3.connect("data.db")
+connection = sqlite3.connect("data.db", check_same_thread=False)
 db_cursor = connection.cursor()
-user = None
+
 # def get_user(user_id) -None:
 #     user = db_cursor.execute(sql)
+
+
+
 
 
 
@@ -52,13 +59,17 @@ def get_login_page():
 
 @app.get("/register", response_class=HTMLResponse)
 def get_register_page(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request, "form": None})
+    return templates.TemplateResponse("register.html", {"request": request, 'errors': None}, )
 
 @app.post("/register", response_class=HTMLResponse)
-def post_register_page(request: Request):
-    print(request.form.password)
-    pass
-
+def post_register_page(request: Request, form_data: RegisterForm = Depends()):
+    query="SELECT * FROM users WHERE EMAIL = ?"
+    res = db_cursor.execute(query, (form_data.email,))
+    if res != []:
+        return templates.TemplateResponse("register.html", {"request": request, 'errors': 'EMAIL ALREADY EXISTS'})
+    else:
+        return templates.TemplateResponse("login.html", {"request": request, "errors": None})
+    
 @app.post("/login")
 def login(user_data: OAuth2PasswordRequestForm = Depends()):
     print(user_data)

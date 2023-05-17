@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% if not errors %}
+        <h1>No errors. YAY</h1>
+    {% else %}
+        <h1>{{errors}}</h1>
+    {% endif %}
     <form method="post" action="/register">
-        <input type="text" placeholder="Username"/>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password"/>
-        <input type="password" placeholder="Confirm password" />
+        <input type="text" placeholder="Username" name="username"/>
+        <input type="email" placeholder="Email" name="email"/>
+        <input type="password" placeholder="Password" name="password"/>
+        <input type="password" placeholder="Confirm password" name="confirmed_password"/>
         <input type="submit" value="Register"/>
     </form>
 {% endblock %}

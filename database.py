@@ -4,18 +4,23 @@ import sqlite3
 
 connection = sqlite3.connect("data.db")
 c = connection.cursor()
-# user_creation = """
-#         CREATE TABLE users
-#         (ID         INTEGER         PRIMARY KEY,
-#         USERNAME    CHAR(20)        NOT NULL,
-#         EMAIL       CHAR(100)       NOT NULL,
-#         PASSWORD    CHAR(20)        NOT NULL,
-#         ROLE        TEXT            NOT NULL)
+user_creation = """
+        CREATE TABLE users
+        (ID         INTEGER         PRIMARY KEY,
+        USERNAME    CHAR(20)        NOT NULL,
+        EMAIL       CHAR(100)       NOT NULL,
+        PASSWORD    CHAR(20)        NOT NULL,
+        ROLE        TEXT            NOT NULL)
 
 
-# """
+"""
 
+SELECT_USER = """
+    SELECT * FROM users WHERE EMAIL = 'TEST@GMAIL.COM'
+"""
 
+res = c.execute(SELECT_USER)
+print(res.fetchall())
 # FOREIGN KEY(COMMANDE_ID) REFERENCES COMMANDE(ID)  
 
 
@@ -37,7 +42,6 @@ c = connection.cursor()
 # commande = """
 #         CREATE table commande
 #         (ID             INTEGER             PRIMARY KEY,
-#         USER_ID         INTEGER,
 #         TOTAL           FLOAT               NOT NULL,
 #         ITEMS           TEXT                NOT NULL,
 #         DATE            TEXT                NOT NULL,
@@ -49,5 +53,5 @@ c = connection.cursor()
 
 # """
 
-c.execute(commande)
-connection.commit()
+# c.execute(commande)
+# connection.commit()
