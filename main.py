@@ -81,7 +81,7 @@ async def post_register_page(request: Request, form_data: RegisterForm = Depends
         pw = generate_password_hash(password=form_data.password, method="pbkdf2:sha256", salt_length=8)
         db_cursor.execute(query, (None, form_data.username, form_data.email.lower(), pw,))
         connection.commit()
-        return templates.TemplateResponse("register.html", {"request": request, 'errors': 'SUCCESS'})
+        return RedirectResponse('/login', status_code=302)
     
 @app.post("/login")
 async def login(user_data: OAuth2PasswordRequestForm = Depends()):
