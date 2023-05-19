@@ -1,25 +1,36 @@
 {% extends 'base.html' %}
+{% block title %}Register{% endblock %}
 {% block body %}
-    {% if not errors %}
-        <h1>No errors. YAY</h1>
-    {% else %}
-        <h1>{{errors}}</h1>
-    {% endif %}
     {% if not form_data %}
-    <form method="post" action="/register">
-        <input type="text" placeholder="Username" name="username"/>
-        <input type="email" placeholder="Email" name="email"/>
-        <input type="password" placeholder="Password" name="password"/>
-        <input type="password" placeholder="Confirm password" name="confirmed_password"/>
-        <input type="submit" value="Register"/>
-    </form>
+    <div class="register--form">
+        <form method="post" action="/register">
+            <input type="text" placeholder="Username" name="username"/>
+            <input type="email" placeholder="Email" name="email"/>
+            <input type="password" placeholder="Password" name="password"/>
+            <input type="password" placeholder="Confirm password" name="confirmed_password"/>
+            <input type="submit" value="Register"/>
+        </form>
+    </div>
     {% else %}
-    <form method="post" action="/register">
-        <input type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
-        <input type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
-        <input type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
-        <input type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
-        <input type="submit" value="Register"/>
-    </form>
+    <div class="register--form">
+        <form method="post" action="/register">
+            <input type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
+            {% if errors["username"] %}
+                <h1>{{ errors["username"] }}</h1>
+            {% endif %}
+            <input type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
+            {% if errors["email"] %}
+                <h1> {{ errors["email"] }}</h1>
+            {% endif %}
+            <input type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
+            <input type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
+            {% for error in [errors["password_not_fit"], errors["password_not_match"]] %}
+                {% if error %}
+                    <h1>{{ error }}</h1>
+                {% endif %}
+            {% endfor %}
+            <input type="submit" value="Register"/>
+        </form>
+    </div>  
     {% endif %}
 {% endblock %}
