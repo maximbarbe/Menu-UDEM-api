@@ -40,3 +40,19 @@ const resetRightDivWidth = () => {
 }
 
 
+
+var errors = document.querySelectorAll(".error");
+for (let i = 0; i < errors.length; i++) {
+    console.log(errors[i].innerHTML)
+    let error_text = errors[i].innerHTML;
+    if (error_text.includes("Email")) {
+        document.querySelector(".email-input").style.cssText += "border: 2.5px solid red !important;";
+    } else if (error_text.includes("utilisateur")) {
+        document.querySelector(".username-input").style.cssText += "border: 2.5px solid red !important;";
+    } else {
+        let passwordInputs = document.querySelectorAll(".password-input");
+        for (let i = 0; i <passwordInputs.length; i++) {
+            passwordInputs[i].style.cssText += "border: 2.5px solid red !important;";
+        }
+    }
+}

@@ -23,7 +23,7 @@
 }
 .register-form-container > input:focus {
     outline: none;
-    border: 2.5px solid #0d6efd;
+    border: 2.5px solid #0d6efd !important;
 }
 
 .register-submit {
