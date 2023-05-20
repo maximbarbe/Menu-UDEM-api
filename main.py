@@ -10,7 +10,7 @@ import os
 import sqlite3
 from forms import RegisterForm
 from helpers import check_password_validity
-
+import uvicorn
 ##################################### FASTAPI SETUP ##################################################
 
 user = None
@@ -102,3 +102,7 @@ async def login(user_data: OAuth2PasswordRequestForm = Depends()):
     print(user_data)
     pass
 ##############################################################################################################
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, port=5500, host="127.0.0.1")

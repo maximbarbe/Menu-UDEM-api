@@ -1,36 +1,48 @@
 {% extends 'base.html' %}
 {% block title %}Register{% endblock %}
+{% block extra_links %}
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/register.css') }}"/>
+{% endblock %}
 {% block body %}
     {% if not form_data %}
-    <div class="register--form">
-        <form method="post" action="/register">
-            <input type="text" placeholder="Username" name="username"/>
-            <input type="email" placeholder="Email" name="email"/>
-            <input type="password" placeholder="Password" name="password"/>
-            <input type="password" placeholder="Confirm password" name="confirmed_password"/>
-            <input type="submit" value="Register"/>
-        </form>
-    </div>
-    {% else %}
-    <div class="register--form">
-        <form method="post" action="/register">
-            <input type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
-            {% if errors["username"] %}
-                <h1>{{ errors["username"] }}</h1>
-            {% endif %}
-            <input type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
-            {% if errors["email"] %}
-                <h1> {{ errors["email"] }}</h1>
-            {% endif %}
-            <input type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
-            <input type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
-            {% for error in [errors["password_not_fit"], errors["password_not_match"]] %}
-                {% if error %}
-                    <h1>{{ error }}</h1>
+        <div class="register--form">
+            <form class="register-form-container" method="post" action="/register">
+                <input type="text" placeholder="Username" name="username"/>
+                <h1>test</h1>
+                <input type="email" placeholder="Email" name="email"/>
+                <input type="password" placeholder="Password" name="password"/>
+                <input type="password" placeholder="Confirm password" name="confirmed_password"/>
+                <input class="register-submit" type="submit" value="Register"/>
+            </form>
+        </div>
+        {% else %}
+        <div class="register--form">
+            <form class="register-form-container" method="post" action="/register">
+                <input type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
+                {% if errors["username"] %}
+                    <h1 class="error">{{ errors["username"] }}</h1>
                 {% endif %}
-            {% endfor %}
-            <input type="submit" value="Register"/>
-        </form>
-    </div>  
+                <input type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
+                {% if errors["email"] %}
+                    <h1 class="error"> {{ errors["email"] }}</h1>
+                {% endif %}
+                <input type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
+                <input type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
+                {% for error in [errors["password_not_fit"], errors["password_not_match"]] %}
+                    {% if error %}
+                        <h1 class="error">{{ error }}</h1>
+                    {% endif %}
+                {% endfor %}
+                <input class="register-submit" type="submit" value="Register"/>
+            </form>
+        </div>
+        <script>
+            var errors = document.querySelectorAll("#error");
+            for (let i = 0; i < errors.length; i++) {
+                if (errors[i].contains("test")) {
+                    errors;
+                }
+            }
+        </script>
     {% endif %}
 {% endblock %}

@@ -38,3 +38,5 @@ const resetRightDivWidth = () => {
     leftDiv.style.boxShadow = "none";
     rightDiv.style.width = "50%";
 }
+
+
