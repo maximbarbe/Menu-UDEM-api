@@ -1,4 +1,15 @@
 
+.register-page-container {
+    position: absolute;
+    top: 0px;
+    background-image: url("../images/cafe-udem.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position-y: -150px;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+}
 .register--form {
     width: 100%;
     display: flex;
@@ -17,8 +28,8 @@
 .register-form-container > input {
     margin-top: 10vh;
     border-radius: 5px;
-    width: 15vw;
-    height: 3vh;
+    width: 35vw;
+    height: 4.5vh;
     border: none;
 }
 .register-form-container > input:focus {

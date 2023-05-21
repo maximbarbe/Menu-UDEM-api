@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('static', path='styles/register.css') }}"/>
 {% endblock %}
 {% block body %}
+<div class="register-page-container">
     {% if not form_data %}
         <div class="register--form">
             <form class="register-form-container" method="post" action="/register">
@@ -38,4 +39,5 @@
         </div>
 
     {% endif %}
+</div>
 {% endblock %}
