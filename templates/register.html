@@ -21,23 +21,27 @@
             <form class="register-form-container" method="post" action="/register" onsubmit="return checkValidityRegisterForm(this)">
                 <input class="username-input" type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
                 {% if errors["username"] %}
-                    <ul>
+                    <ul class="errors-list">
                         <li class="error">{{ errors["username"] }}</li>
                     </ul>
                 {% endif %}
                 <input class="email-input" type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
                 {% if errors["email"] %}
-                    <h1 class="error"> {{ errors["email"] }}</h1>
+                    <ul class="errors-list">
+                        <li class="error">{{ error["email"] }}</li>
+                    </ul>
                 {% endif %}
                 <input class="password-input" type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
                 <input class="password-input" type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
+                <ul class="errors-list">
                 {% for error in [errors["password_not_fit"], errors["password_not_match"]] %}
-                    <ul>
+                    
                         {% if error %}
-                            <li class="error">{{ errors["username"] }}</li>
+                            <li class="error">{{ error }}</li>
                         {% endif %}
-                    </ul>
+                    
                 {% endfor %}
+                </ul>
                 <input class="register-submit" type="submit" value="Register"/>
             </form>
         </div>

@@ -84,3 +84,14 @@
     background-color: #0057ac;
     width: 100%;
 }
+
+.error {
+    color: grey;
+    font-size: 0.75vw;
+}
+.errors-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin-bottom: 0 !important;
+}
