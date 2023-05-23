@@ -1,2 +1,2 @@
 
-        return True
+@app.get("/register", response_class=HTMLResponse)

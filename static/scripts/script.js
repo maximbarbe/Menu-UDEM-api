@@ -56,3 +56,18 @@ for (let i = 0; i < errors.length; i++) {
         }
     }
 }
+
+
+const checkValidityRegisterForm = (form) => {
+    let registerFields = document.getElementsByClassName("register-input");
+    for (let i = 0; i < registerFields.length; i++) {
+        if (registerFields[i].value == "") {
+            alert("Vous devez compléter tous les champs.");
+            console.log(registerFields[i].value);
+            registerFields[i].focus();
+            return false;
+        }
+    }
+
+
+}

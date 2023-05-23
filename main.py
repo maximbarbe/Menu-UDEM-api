@@ -56,9 +56,9 @@ async def index(request: Request):
     # Retourner la page d'accueil.
     return templates.TemplateResponse("index.html", {"request": request, 'user': user})
 
-@app.get("/login")
-async def get_login_page():
-    return {"Hello": "World"}
+@app.get("/login", response_class=HTMLResponse)
+async def get_login_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
 
 @app.get("/register", response_class=HTMLResponse)
 async def get_register_page(request: Request):

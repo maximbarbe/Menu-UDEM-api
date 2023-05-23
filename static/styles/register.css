@@ -5,8 +5,7 @@
     background-image: url("../images/cafe-udem.jpg");
     background-repeat:no-repeat;
     background-size: cover;
-    background-position-y: -150px;
-    z-index: -1;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -17,22 +16,71 @@
 }
 
 .register--form {
-    background-color: white;
-    height: 8vw;
-    width: 15vw;
+    background-color: rgba(255, 255, 255, 0.85);
+    height: 70%;
+    width: 35%;
     border-radius: 20px;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 4vh;
 }
 .register-form-container {
+    height: 100%;
+    width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .register-form-container > input {
-    width: 5vw;
+    margin-top: 10%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    width: 15vw;
+    z-index: 1;
+    
+}
+
+.register-submit {
+    background-color: #0d6efd;
+    height: 7.5%;
+    color: white;
+    font-weight: bold;
+    font-size: 1vw;
+    transition: background-color 0.25s ease-in-out;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+}
+
+
+.register-submit:hover {
+    background-color: #0057ac;
+}
+
+.register-form-container > input:not(.register-submit) {
+    width: 60%;
+    height: 5%;
+    border: 1.5px solid #0d6efd;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+}
+
+.register-form-container > input:not(.register-submit):focus {
+    border: 2.5px solid #0057ac;
+}
+
+.register-welcome {
+    color: #0d6efd;
+    font-weight: bold;
+    font-size: 4vw;
+}
+
+.welcome-div {
+    align-items: flex-start;
+    background-color: #0057ac;
+    width: 100%;
 }

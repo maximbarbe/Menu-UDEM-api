@@ -7,20 +7,23 @@
 <div class="register-page-container">
     {% if not form_data %}
         <div class="register--form">
-            <form class="register-form-container" method="post" action="/register">
-                <input class="username-input" type="text" placeholder="Username" name="username"/>
-                <input class="email-input" type="email" placeholder="Email" name="email"/>
-                <input class="password-input" type="password" placeholder="Password" name="password"/>
-                <input class="password-input" type="password" placeholder="Confirm password" name="confirmed_password"/>
+            
+            <form class="register-form-container" method="post" action="/register" onsubmit="return checkValidityRegisterForm(this)">
+                <input class="username-input register-input" type="text" placeholder="Username" name="username"/>
+                <input class="email-input register-input" type="email" placeholder="Email" name="email"/>
+                <input class="password-input register-input" type="password" placeholder="Password" name="password"/>
+                <input class="password-input register-input" type="password" placeholder="Confirm password" name="confirmed_password"/>
                 <input class="register-submit" type="submit" value="Register"/>
             </form>
         </div>
         {% else %}
         <div class="register--form">
-            <form class="register-form-container" method="post" action="/register">
+            <form class="register-form-container" method="post" action="/register" onsubmit="return checkValidityRegisterForm(this)">
                 <input class="username-input" type="text" placeholder="Username" name="username" value="{{ form_data.username }}"/>
                 {% if errors["username"] %}
-                    <h1 class="error">{{ errors["username"] }}</h1>
+                    <ul>
+                        <li class="error">{{ errors["username"] }}</li>
+                    </ul>
                 {% endif %}
                 <input class="email-input" type="email" placeholder="Email" name="email" value="{{ form_data.email }}"/>
                 {% if errors["email"] %}
@@ -29,9 +32,11 @@
                 <input class="password-input" type="password" placeholder="Password" name="password" value="{{ form_data.password }}"/>
                 <input class="password-input" type="password" placeholder="Confirm password" name="confirmed_password" value=" {{ form_data.confirmed_password }} "/>
                 {% for error in [errors["password_not_fit"], errors["password_not_match"]] %}
-                    {% if error %}
-                        <h1 class="error">{{ error }}</h1>
-                    {% endif %}
+                    <ul>
+                        {% if error %}
+                            <li class="error">{{ errors["username"] }}</li>
+                        {% endif %}
+                    </ul>
                 {% endfor %}
                 <input class="register-submit" type="submit" value="Register"/>
             </form>
